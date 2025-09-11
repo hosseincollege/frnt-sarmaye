@@ -10,10 +10,10 @@ export default function EnvInfoButton({ backendInfo }) {
         style={{
           position: "fixed",
           top: 10,
-          left: 10,
+          left: 100,
           background: "#1976d2",
           color: "white",
-          padding: "8px 10px",
+          padding: "7px 7px",
           borderRadius: "50%",
           cursor: "pointer",
           zIndex: 9999,
@@ -29,7 +29,7 @@ export default function EnvInfoButton({ backendInfo }) {
           style={{
             position: "fixed",
             top: 50,
-            left: 10,
+            left: 100,
             background: "white",
             padding: "10px",
             border: "1px solid #ccc",

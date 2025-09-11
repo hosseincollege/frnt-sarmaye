@@ -131,7 +131,7 @@ export default function Header() {
               border: "1px solid #ddd",
               borderRadius: "5px",
               padding: "10px",
-              minWidth: "150px",
+              minWidth: "50px",
               boxShadow: "0 2px 5px rgba(0,0,0,0.15)",
               textAlign: "right",
             }}
