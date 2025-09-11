@@ -12,7 +12,7 @@ export default function WorkshopList() {
   // گرفتن لیست کارگاه‌ها
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/workshops/")
+      .get(`${process.env.REACT_APP_API_URL}/api/workshops/`)
       .then((res) => {
         console.log("📥 داده‌های دریافتی:", res.data);
         setWorkshops(res.data);
@@ -25,7 +25,7 @@ export default function WorkshopList() {
   // تابع حذف کارگاه
   const handleDelete = async (id) => {
     if (window.confirm("آیا مطمئن هستید که می‌خواهید این کارگاه را حذف کنید؟")) {
-      await fetch(`http://127.0.0.1:8000/api/workshops/${id}/`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/api/workshops/${id}/`, {
         method: "DELETE",
       });
       setWorkshops(workshops.filter((w) => w.id !== id));
@@ -98,7 +98,7 @@ export default function WorkshopList() {
                     image={
                       workshop.cover_image.startsWith("http")
                         ? workshop.cover_image
-                        : `http://127.0.0.1:8000${workshop.cover_image}`
+                        : `${process.env.REACT_APP_API_URL}${workshop.cover_image}`
                     }
                     alt="کاور"
                   />
@@ -116,7 +116,7 @@ export default function WorkshopList() {
                     workshop.uploaded_images_urls.map((img) => (
                       <img
                         key={img.id}
-                        src={`http://127.0.0.1:8000${img.image}`}
+                        src={`${process.env.REACT_APP_API_URL}${img.image}`}
                         alt="تصویر اضافی"
                         style={{
                           maxWidth: "150px",

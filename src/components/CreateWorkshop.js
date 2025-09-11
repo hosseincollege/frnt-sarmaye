@@ -50,7 +50,7 @@ export default function CreateWorkshop({ onCreated }) {
     });
 
     try {
-      await axios.post("http://127.0.0.1:8000/api/workshops/", fd, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/workshops/`, fd, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("access")}`,

@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("access");
     if (token) {
       axios
-        .get("http://127.0.0.1:8000/api/user/me/", {
+        .get(`${process.env.REACT_APP_API_URL}/api/user/me/`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(res => setCurrentUser(res.data))
