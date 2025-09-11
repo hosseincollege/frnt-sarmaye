@@ -28,7 +28,7 @@ export default function EditWorkshop() {
   // گرفتن داده اولیه
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/workshops/${id}/`)
+      .get(`${process.env.REACT_APP_API_URL}/api/workshops/${id}/`)
       .then((res) => {
         const d = res.data;
         setForm({
@@ -80,7 +80,7 @@ export default function EditWorkshop() {
     });
 
     try {
-      await axios.put(`http://127.0.0.1:8000/api/workshops/${id}/`, fd, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/workshops/${id}/`, fd, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("access")}`,

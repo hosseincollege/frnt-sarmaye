@@ -12,7 +12,7 @@ export default function WorkshopDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/workshops/${id}/`)
+      .get(`${process.env.REACT_APP_API_URL}/api/workshops/${id}/`)
       .then((res) => {
         console.log("📥 جزئیات کارگاه:", res.data);
         setWorkshop(res.data);
@@ -41,7 +41,7 @@ export default function WorkshopDetail() {
           src={
             workshop.cover_image.startsWith("http")
               ? workshop.cover_image
-              : `http://127.0.0.1:8000${workshop.cover_image}`
+              : `${process.env.REACT_APP_API_URL}${workshop.cover_image}`
           }
           alt="کاور"
           style={{ maxWidth: "300px", marginBottom: "10px" }}
@@ -51,7 +51,7 @@ export default function WorkshopDetail() {
         workshop.uploaded_images.map((img) => (
           <img
             key={img.id}
-            src={`http://127.0.0.1:8000${img.image}`}
+            src={`${process.env.REACT_APP_API_URL}${img.image}`}
             alt="تصویر اضافی"
             style={{ maxWidth: "150px", margin: "5px" }}
           />
