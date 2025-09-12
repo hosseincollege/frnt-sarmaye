@@ -4,21 +4,21 @@ export default function EnvInfoButton({ backendInfo }) {
   const [showInfo, setShowInfo] = useState(false);
 
   return (
-    <>
+    // دیو مادر جدید با position: fixed و رویدادهای hover
+    <div
+      style={{ position: "fixed", top: 10, left: 100, zIndex: 9999 }}
+      onMouseEnter={() => setShowInfo(true)}
+      onMouseLeave={() => setShowInfo(false)}
+    >
       {/* آیکون ℹ️ */}
       <div
         style={{
-          position: "fixed",
-          top: 10,
-          left: 100,
-          background: "#1976d2",
+          background: "#ffffffff",
           color: "white",
-          padding: "7px 7px",
-          borderRadius: "50%",
+          padding: "0px 0px",
+          borderRadius: "30%",
           cursor: "pointer",
-          zIndex: 9999,
         }}
-        onClick={() => setShowInfo(!showInfo)}
       >
         ℹ️
       </div>
@@ -27,27 +27,25 @@ export default function EnvInfoButton({ backendInfo }) {
       {showInfo && (
         <div
           style={{
-            position: "fixed",
-            top: 50,
-            left: 100,
+            position: "absolute",
+            top: 40,
+            left: 0,
             background: "white",
             padding: "10px",
             border: "1px solid #ccc",
             borderRadius: "8px",
-            zIndex: 9999,
           }}
         >
           <p><b>Frontend:</b> {process.env.NODE_ENV.toUpperCase()}</p>
-          <p><b>API URL:</b> {process.env.REACT_APP_API_URL}</p>
-          {backendInfo && (
+          <p><b>Backend:</b> {backendInfo.backend_env}</p>
+          {backendInfo?.is_superuser && (
             <>
-              <p><b>Backend:</b> {backendInfo.backend_env}</p>
+              <p><b>API URL:</b> {process.env.REACT_APP_API_URL}</p>
               <p><b>your IP:</b> {backendInfo.ip}</p>
             </>
           )}
-          <button onClick={() => setShowInfo(false)}>Close</button>
         </div>
       )}
-    </>
+    </div>
   );
 }

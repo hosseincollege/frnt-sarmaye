@@ -32,7 +32,7 @@ export default function WorkshopList() {
     }
   };
 
-  if (!workshops.length) return <p>هیچ کارگاهی ثبت نشده است</p>;
+
 
   return (
     <>
@@ -75,20 +75,19 @@ export default function WorkshopList() {
           )}
         </div>
 
-        {/* گرید کارگاه‌ها */}
+      {/* نمایش متن در صورت نبود کارگاه */}
+      {workshops.length === 0 ? (
+        <Typography align="center" color="text.secondary">
+          هیچ کارگاهی ثبت نشده است
+        </Typography>
+      ) : (
+        
+
         <Grid container spacing={2} sx={{ direction: "rtl" }}>
           {workshops.map((workshop) => (
             <Grid item xs={12} sm={6} md={4} key={workshop.id}>
               {/* کارت */}
-            </Grid>
-          ))}
-        </Grid>
-      </div>
 
-      <div>
-        <Grid container spacing={2} sx={{ direction: "rtl" }}>
-          {workshops.map((workshop) => (
-            <Grid item xs={12} sm={6} md={4} key={workshop.id}>
               {/* بقیه کد کارت */}
               <Card sx={{ p: 1 }}>
                 {workshop.cover_image && (
@@ -155,7 +154,8 @@ export default function WorkshopList() {
             </Grid>
           ))}
         </Grid>
-      </div>
+      )} {/* ← این پرانتز بستن شرط */}
+      </div>  {/* ← بستن div اصلی */}
     </>
   );
 }

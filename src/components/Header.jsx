@@ -131,7 +131,7 @@ export default function Header() {
               border: "1px solid #ddd",
               borderRadius: "5px",
               padding: "10px",
-              minWidth: "50px",
+              minWidth: "150px",
               boxShadow: "0 2px 5px rgba(0,0,0,0.15)",
               textAlign: "right",
             }}
@@ -155,20 +155,37 @@ export default function Header() {
                 </button>
               </>
             ) : (
-              <>
-                <p
-                  style={{ margin: "5px 0", cursor: "pointer" }}
-                  onClick={() => (window.location.href = "/login")}
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", alignItems: "center" }}>
+                <button
+                  onClick={() => navigate("/login")}
+                  style={{
+                    width: "100%",
+                    padding: "8px",
+                    background: "#ffffffff",
+                    color: "#2b00ffff",
+                    border: "none",
+                    borderRadius: "3px",
+                    cursor: "pointer",
+                  }}
                 >
                   ورود
-                </p>
-                <p
-                  style={{ margin: "5px 0", cursor: "pointer" }}
-                  onClick={() => (window.location.href = "/register")}
+                </button>
+                <button
+                  onClick={() => navigate("/register")}
+                  style={{
+                    width: "100%",
+                    padding: "8px",
+                    background: "#ffffffff",
+                    color: "#ff00eeff",
+                    border: "none",
+                    borderRadius: "3px",
+                    cursor: "pointer",
+                  }}
                 >
                   ثبت‌نام
-                </p>
-              </>
+                </button>
+              </div>
+
             )}
           </div>
         )}

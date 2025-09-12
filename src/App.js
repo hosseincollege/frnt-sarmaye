@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import WorkshopList from "./components/WorkshopList";
 import WorkshopDetail from "./components/WorkshopDetail";
 import EditWorkshop from "./components/EditWorkshop";
@@ -11,21 +11,25 @@ import { ToastContainer } from "react-toastify";
 import HomePage from "./components/HomePage";
 import "react-toastify/dist/ReactToastify.css";
 import EnvInfoButton from "./components/EnvInfoButton";
+import { AuthContext } from "./AuthContext";
+
 
 export default function App() {
+  const { currentUser } = useContext(AuthContext);
   const [refreshKey, setRefreshKey] = useState(0);
   const [backendInfo, setBackendInfo] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
 
   useEffect(() => {
-    // مرحله ۱: گرفتن backend_env و ip بدون نیاز به لاگین
-    fetch(`${process.env.REACT_APP_API_URL}/api/backend-info/`)
+    const token = localStorage.getItem("access");
+
+    fetch(`${process.env.REACT_APP_API_URL}/api/backend-info/`, {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    })
       .then(res => res.json())
-      .then(data => setBackendInfo(data))
+      .then(data => setBackendInfo(prev => ({ ...prev, ...data })))
       .catch(err => console.error("Backend info fetch error:", err));
 
-    // مرحله ۲: فقط اگر توکن داری کاربر رو هم بگیر
-    const token = localStorage.getItem("access");
     if (token) {
       fetch(`${process.env.REACT_APP_API_URL}/api/user/me/`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -34,10 +38,14 @@ export default function App() {
           if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
           return res.json();
         })
-        .then(data => setBackendInfo(data))
+        .then(data => setBackendInfo(prev => ({ ...prev, ...data })))
         .catch(err => console.error("User info fetch error:", err));
     }
-  }, []);
+  }, [currentUser]); // ✅ وابسته به تغییر کاربر
+
+
+
+
 
 
   return (
