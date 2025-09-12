@@ -4,7 +4,6 @@ export default function EnvInfoButton({ backendInfo }) {
   const [showInfo, setShowInfo] = useState(false);
 
   return (
-    // دیو مادر جدید با position: fixed و رویدادهای hover
     <div
       style={{ position: "fixed", top: 10, left: 100, zIndex: 9999 }}
       onMouseEnter={() => setShowInfo(true)}
@@ -24,8 +23,9 @@ export default function EnvInfoButton({ backendInfo }) {
       </div>
 
       {/* پنجره اطلاعات */}
-      {showInfo && (
+      {showInfo && backendInfo && (
         <div
+          key="env-info-panel"
           style={{
             position: "absolute",
             top: 40,
@@ -36,12 +36,13 @@ export default function EnvInfoButton({ backendInfo }) {
             borderRadius: "8px",
           }}
         >
-          <p><b>Frontend:</b> {process.env.NODE_ENV.toUpperCase()}</p>
-          <p><b>Backend:</b> {backendInfo.backend_env}</p>
+          <p><b>Frontend:</b> {process.env.NODE_ENV?.toUpperCase() || "unknown"}</p>
+          <p><b>Backend:</b> {backendInfo?.backend_env || "unknown"}</p>
+
           {backendInfo?.is_superuser && (
             <>
-              <p><b>API URL:</b> {process.env.REACT_APP_API_URL}</p>
-              <p><b>your IP:</b> {backendInfo.ip}</p>
+              <p><b>API URL:</b> {process.env.REACT_APP_API_URL || "unknown"}</p>
+              <p><b>Your IP:</b> {backendInfo?.ip || "unknown"}</p>
             </>
           )}
         </div>

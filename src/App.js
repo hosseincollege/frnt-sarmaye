@@ -30,18 +30,10 @@ export default function App() {
       .then(data => setBackendInfo(prev => ({ ...prev, ...data })))
       .catch(err => console.error("Backend info fetch error:", err));
 
-    if (token) {
-      fetch(`${process.env.REACT_APP_API_URL}/api/user/me/`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then(res => {
-          if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
-          return res.json();
-        })
-        .then(data => setBackendInfo(prev => ({ ...prev, ...data })))
-        .catch(err => console.error("User info fetch error:", err));
-    }
-  }, [currentUser]); // ✅ وابسته به تغییر کاربر
+    // 🔹 دیگر لازم نیست /api/user/me/ و حذفش می‌کنیم چون backend_info حالا is_superuser رو میده
+  }, [currentUser]); // وابسته به تغییر کاربر
+
+
 
 
 
