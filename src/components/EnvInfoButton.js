@@ -1,7 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function EnvInfoButton({ backendInfo }) {
+export default function EnvInfoButton() {
   const [showInfo, setShowInfo] = useState(false);
+  const [backendInfo, setBackendInfo] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/backend-info/`)
+      .then(res => setBackendInfo(res.data))
+      .catch(() => setBackendInfo(null));
+  }, []);
 
   return (
     <div
@@ -23,9 +32,8 @@ export default function EnvInfoButton({ backendInfo }) {
       </div>
 
       {/* پنجره اطلاعات */}
-      {showInfo && backendInfo && (
+      {showInfo && (
         <div
-          key="env-info-panel"
           style={{
             position: "absolute",
             top: 40,
@@ -36,13 +44,23 @@ export default function EnvInfoButton({ backendInfo }) {
             borderRadius: "8px",
           }}
         >
-          <p><b>Frontend:</b> {process.env.NODE_ENV?.toUpperCase() || "unknown"}</p>
-          <p><b>Backend:</b> {backendInfo?.backend_env || "unknown"}</p>
+          <p>
+            <b>Frontend:</b>{" "}
+            {process.env.NODE_ENV?.toUpperCase() || "unknown"}
+          </p>
+          <p>
+            <b>Backend:</b> {backendInfo?.backend_env || "unknown"}
+          </p>
 
           {backendInfo?.is_superuser && (
             <>
-              <p><b>API URL:</b> {process.env.REACT_APP_API_URL || "unknown"}</p>
-              <p><b>Your IP:</b> {backendInfo?.ip || "unknown"}</p>
+              <p>
+                <b>API URL:</b>{" "}
+                {process.env.REACT_APP_API_URL || "unknown"}
+              </p>
+              <p>
+                <b>Your IP:</b> {backendInfo?.ip || "unknown"}
+              </p>
             </>
           )}
         </div>
