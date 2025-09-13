@@ -120,7 +120,7 @@ export default function WorkshopDetail() {
         <Paper elevation={3} sx={{ p: { xs: 2, md: 4 } }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
             <Typography variant="h4" component="h1" fontWeight="bold">
-              {workshop.name}
+              {workshop.title}
             </Typography>
             <Button
               variant="outlined"
@@ -139,7 +139,7 @@ export default function WorkshopDetail() {
               <Box
                 component="img"
                 src={getImageUrl(workshop.cover_image)}
-                alt={`کاور ${workshop.name}`}
+                alt={`کاور ${workshop.title}`}
                 sx={{ width: '100%', height: 'auto', borderRadius: 2, mb: 2, boxShadow: 3 }}
               />
               {/* این بخش حیاتی برای نمایش تصاویر گالری است */}
@@ -180,15 +180,15 @@ export default function WorkshopDetail() {
               <List>
                 <ListItem>
                   <ListItemIcon><BusinessIcon /></ListItemIcon>
-                  <ListItemText primary="نمایندگی" secondary={workshop.representative || 'ثبت نشده'} />
+                  <ListItemText primary="نمایندگی" secondary={workshop.agency || 'ثبت نشده'} />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon><PhoneIcon /></ListItemIcon>
-                  <ListItemText primary="شماره تماس" secondary={workshop.phone || 'ثبت نشده'} />
+                  <ListItemText primary="شماره تماس" secondary={workshop.contact_number || 'ثبت نشده'} />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon><LocationOnIcon /></ListItemIcon>
-                  <ListItemText primary="مکان" secondary={workshop.location || 'ثبت نشده'} />
+                  <ListItemText primary="موقعیت" secondary={workshop.location || 'ثبت نشده'} />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon><CategoryIcon /></ListItemIcon>
@@ -198,11 +198,11 @@ export default function WorkshopDetail() {
                 </ListItem>
                 <ListItem>
                   <ListItemIcon><MonetizationOnIcon color="success" /></ListItemIcon>
-                  <ListItemText primary="سرمایه لازم" secondary={`${Number(workshop.investment_needed).toLocaleString()} تومان`} />
+                  <ListItemText primary="سرمایه لازم" secondary={`${Number(workshop.required_capital).toLocaleString()} تومان`} />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon><EventNoteIcon /></ListItemIcon>
-                  <ListItemText primary="مدت قرارداد" secondary={`${workshop.duration_months} ماه`} />
+                  <ListItemText primary="مدت قرارداد" secondary={`${workshop.contract_duration} ماه`} />
                 </ListItem>
               </List>
               <Divider sx={{ my: 2 }} />

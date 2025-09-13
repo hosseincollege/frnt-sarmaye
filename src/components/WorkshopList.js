@@ -147,12 +147,12 @@ export default function WorkshopList() {
                     component="img"
                     height="180"
                     image={getImageUrl(workshop.cover_image) || 'https://via.placeholder.com/300x180.png?text=No+Image'}
-                    alt={`کاور کارگاه ${workshop.name}`}
+                    alt={`کاور کارگاه ${workshop.title}`}
                   />
                   {/* ===== حل مشکل ارتفاع: اضافه کردن flexGrow: 1 به CardContent ===== */}
                   <CardContent sx={{ width: '100%', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                     <Typography gutterBottom variant="h5" component="h2" color="primary.main" fontWeight="bold">
-                      {workshop.name}
+                      {workshop.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                       {workshop.description?.length > 120 ? `${workshop.description.substring(0, 120)}...` : workshop.description}

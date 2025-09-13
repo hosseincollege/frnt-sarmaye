@@ -64,9 +64,9 @@ export default function Header() {
               boxShadow: "0 2px 5px rgba(0,0,0,0.15)",
             }}
           >
-            <p style={{ margin: "5px 0" }}>دسته ۱</p>
-            <p style={{ margin: "5px 0" }}>دسته ۲</p>
-            <p style={{ margin: "5px 0" }}>دسته ۳</p>
+            <p style={{ margin: "5px 0" }}>لیست کارگاه ها</p>
+            <p style={{ margin: "5px 0" }}>رمز ارز</p>
+            <p style={{ margin: "5px 0" }}>سرمایه گذاری</p>
           </div>
         )}
       </div>
