@@ -1,3 +1,6 @@
+// فایل: App.js (اصلاح شده)
+// من فقط یک <div> با استایل به دور Routes اضافه کرده‌ام
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import WorkshopList from "./components/WorkshopList";
@@ -13,7 +16,6 @@ import "react-toastify/dist/ReactToastify.css";
 import EnvInfoButton from "./components/EnvInfoButton";
 import { AuthContext } from "./AuthContext";
 
-
 export default function App() {
   const { currentUser } = useContext(AuthContext);
   const [refreshKey, setRefreshKey] = useState(0);
@@ -26,22 +28,13 @@ export default function App() {
     fetch(`${process.env.REACT_APP_API_URL}/api/backend-info/`, {
       method: "GET",
       headers: token ? { "Authorization": `Bearer ${token}` } : {},
-      credentials: "include", // 👈 اضافه شد
+      credentials: "include", 
     })
-
       .then(res => res.json())
       .then(data => setBackendInfo(prev => ({ ...prev, ...data })))
       .catch(err => console.error("Backend info fetch error:", err));
 
-    // 🔹 دیگر لازم نیست /api/user/me/ و حذفش می‌کنیم چون backend_info حالا is_superuser رو میده
-  }, [currentUser]); // وابسته به تغییر کاربر
-
-
-
-
-
-
-
+  }, [currentUser]); 
 
   return (
     <>
@@ -52,22 +45,26 @@ export default function App() {
         {/* دکمه EnvInfoButton به همراه props اطلاعات بک‌اند */}
         <EnvInfoButton backendInfo={backendInfo} />
 
-
-        {/* محتوای اصلی Routes */}
-        <div style={{ maxWidth: "800px", margin: "20px auto 0 auto" }}>
-          <Routes>
-            <Route
-              path="/"
-              element={<HomePage key={refreshKey} />}
-            />
-            <Route path="/workshops" element={<WorkshopList />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/create" element={<CreateWorkshopPage />} />
-            <Route path="/workshops/:id" element={<WorkshopDetail />} />
-            <Route path="/edit/:id" element={<EditWorkshop />} />
-          </Routes>
+        {/* ✅✅✅ اصلاح کلیدی اینجاست ✅✅✅ */}
+        {/* یک div اصلی برای تمام محتوای صفحات با استایل padding-top */}
+        <div style={{ paddingTop: '70px' }}>
+          {/* محتوای اصلی Routes (کد خودتان بدون تغییر) */}
+          <div style={{ maxWidth: "800px", margin: "20px auto 0 auto" }}>
+            <Routes>
+              <Route
+                path="/"
+                element={<HomePage key={refreshKey} />}
+              />
+              <Route path="/workshops" element={<WorkshopList />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/create" element={<CreateWorkshopPage />} />
+              <Route path="/workshops/:id" element={<WorkshopDetail />} />
+              <Route path="/edit/:id" element={<EditWorkshop />} />
+            </Routes>
+          </div>
         </div>
+        {/* ✅✅✅ پایان بخش اصلاح شده ✅✅✅ */}
       </Router>
     </>
   );
