@@ -24,8 +24,11 @@ export default function App() {
     const token = localStorage.getItem("access");
 
     fetch(`${process.env.REACT_APP_API_URL}/api/backend-info/`, {
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      method: "GET",
+      headers: token ? { "Authorization": `Bearer ${token}` } : {},
+      credentials: "include", // 👈 اضافه شد
     })
+
       .then(res => res.json())
       .then(data => setBackendInfo(prev => ({ ...prev, ...data })))
       .catch(err => console.error("Backend info fetch error:", err));

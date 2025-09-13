@@ -32,9 +32,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const response = await 
-      // RegisterPage.js
-      fetch(`${process.env.REACT_APP_API_URL}/api/auth/register/`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/register/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +42,9 @@ export default function RegisterPage() {
           password: formData.password,
           email: formData.email
         }),
+        credentials: "include", // 👈 اضافه شد
       });
+
 
 
       const data = await response.json();
