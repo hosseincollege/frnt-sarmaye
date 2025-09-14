@@ -129,15 +129,18 @@ export default function WorkshopList() {
                 sx={{
                   width: '100%',
                   display: 'flex',
-                  flexDirection: 'column', // چیدمان ستونی برای کارت
-                  borderRadius: 2,
+                  flexDirection: 'column',
+                  borderRadius: 3,
+                  overflow: 'hidden',
+                  boxShadow: 3,
                   transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
                   '&:hover': {
                     transform: 'translateY(-4px)',
-                    boxShadow: '0 4px 20px 0 rgba(0,0,0,0.12)',
+                    boxShadow: 6,
                   }
                 }}
               >
+
                 {/* CardActionArea باید تمام فضای باقی‌مانده را بگیرد */}
                 <CardActionArea 
                     onClick={() => navigate(`/workshops/${workshop.id}`)} 
@@ -150,7 +153,16 @@ export default function WorkshopList() {
                     alt={`کاور کارگاه ${workshop.title}`}
                   />
                   {/* ===== حل مشکل ارتفاع: اضافه کردن flexGrow: 1 به CardContent ===== */}
-                  <CardContent sx={{ width: '100%', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                  <CardContent
+                    sx={{
+                      width: '100%',
+                      flexGrow: 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 1.5
+                    }}
+                  >
+
                     <Typography gutterBottom variant="h5" component="h2" color="primary.main" fontWeight="bold">
                       {workshop.title}
                     </Typography>

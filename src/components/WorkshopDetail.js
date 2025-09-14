@@ -135,7 +135,13 @@ export default function WorkshopDetail() {
 
           <Grid container spacing={4}>
             {/* ستون راست: تصاویر */}
-            <Grid item xs={12} md={5}>
+            <Grid 
+              item 
+              xs={12} 
+              md={7} 
+              sx={{ direction: 'rtl', textAlign: 'right' }}
+            >
+
               <Box
                 component="img"
                 src={getImageUrl(workshop.cover_image)}
@@ -172,7 +178,13 @@ export default function WorkshopDetail() {
             </Grid>
             
             {/* ستون چپ: اطلاعات */}
-            <Grid item xs={12} md={7}>
+            <Grid 
+              item 
+              xs={12} 
+              md={7} 
+              sx={{ direction: 'rtl', textAlign: 'right' }}
+            >
+
               <Typography variant="body1" paragraph color="text.secondary">
                 {workshop.description}
               </Typography>
@@ -180,29 +192,54 @@ export default function WorkshopDetail() {
               <List>
                 <ListItem>
                   <ListItemIcon><BusinessIcon /></ListItemIcon>
-                  <ListItemText primary="نمایندگی" secondary={workshop.agency || 'ثبت نشده'} />
+                  <ListItemText 
+                    primary="نمایندگی" 
+                    secondary={workshop.agency || 'ثبت نشده'} 
+                    sx={{ textAlign: 'right' }}
+                  />
+
                 </ListItem>
                 <ListItem>
                   <ListItemIcon><PhoneIcon /></ListItemIcon>
-                  <ListItemText primary="شماره تماس" secondary={workshop.contact_number || 'ثبت نشده'} />
+                  <ListItemText 
+                    primary="شماره تماس" 
+                    secondary={workshop.contact_number || 'ثبت نشده'} 
+                    sx={{ textAlign: 'right' }}
+                  />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon><LocationOnIcon /></ListItemIcon>
-                  <ListItemText primary="موقعیت" secondary={workshop.location || 'ثبت نشده'} />
+                  <ListItemText 
+                    primary="موقعیت" 
+                    secondary={workshop.location || 'ثبت نشده'} 
+                    sx={{ textAlign: 'right' }}
+                  />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon><CategoryIcon /></ListItemIcon>
-                  <ListItemText primary="نوع محصول" secondary={
-                    <Chip label={workshop.product_type || 'نامشخص'} size="small" />
-                  } />
+                  <ListItemText 
+                    primary="نوع محصول" 
+                    secondary={
+                      <Chip label={workshop.product_type || 'نامشخص'} size="small" />}
+                    sx={{ textAlign: 'right' }}
+                  />
+                  
                 </ListItem>
                 <ListItem>
                   <ListItemIcon><MonetizationOnIcon color="success" /></ListItemIcon>
-                  <ListItemText primary="سرمایه لازم" secondary={`${Number(workshop.required_capital).toLocaleString()} تومان`} />
+                  <ListItemText 
+                    primary="سرمایه لازم" 
+                    secondary={`${Number(workshop.required_capital).toLocaleString()} تومان`} 
+                    sx={{ textAlign: 'right' }}
+                  />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon><EventNoteIcon /></ListItemIcon>
-                  <ListItemText primary="مدت قرارداد" secondary={`${workshop.contract_duration} ماه`} />
+                  <ListItemText 
+                    primary="مدت قرارداد" 
+                    secondary={`${workshop.contract_duration} ماه`} 
+                    sx={{ textAlign: 'right' }}
+                  />
                 </ListItem>
               </List>
               <Divider sx={{ my: 2 }} />
