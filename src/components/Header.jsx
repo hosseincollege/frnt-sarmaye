@@ -19,13 +19,13 @@ export default function Header() {
 
   // تعیین رنگ آیکون بر اساس سه حالت
   const getIconColor = () => {
-    if (theme === "light") return "#000";  // مشکی
-    if (theme === "dark") return "#fff";   // سفید
+    if (theme === "light") return "#000000ff";  // مشکی
+    if (theme === "dark") return "#676767ff";   // سفید
     if (theme === "system") {
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      return prefersDark ? "#fff" : "#000";
+      return prefersDark ? "#bca600ff" : "#a09800ff";
     }
-    return "#000"; // پیش‌فرض
+    return "#000000ff"; // پیش‌فرض
   };
 
 
