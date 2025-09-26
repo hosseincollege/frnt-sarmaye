@@ -17,6 +17,17 @@ export default function Header() {
     else setTheme("light");
   };
 
+  // تعیین رنگ آیکون بر اساس سه حالت
+  const getIconColor = () => {
+    if (theme === "light") return "#000";  // مشکی
+    if (theme === "dark") return "#fff";   // سفید
+    if (theme === "system") {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      return prefersDark ? "#fff" : "#000";
+    }
+    return "#000"; // پیش‌فرض
+  };
+
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
@@ -138,13 +149,15 @@ export default function Header() {
           cursor: "pointer",
           marginRight: "15px",
           display: "flex",
-          alignItems: "center"
+          alignItems: "center",
+          color: getIconColor(),
         }}
         onClick={cycleTheme}
         title={`Current theme: ${theme}`}
       >
         <Brightness4Icon />
       </span>
+
 
 
 
