@@ -3,10 +3,20 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { AuthContext } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import { ThemeContext } from "../ThemeContext";
 
 export default function Header() {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  const cycleTheme = () => {
+    if (theme === "light") setTheme("dark");
+    else if (theme === "dark") setTheme("system");
+    else setTheme("light");
+  };
+
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
@@ -121,6 +131,21 @@ export default function Header() {
       >
         سیمین پلاس
       </div>
+
+      {/* آیکون سوئیچ تم */}
+      <span
+        style={{
+          cursor: "pointer",
+          marginRight: "15px",
+          display: "flex",
+          alignItems: "center"
+        }}
+        onClick={cycleTheme}
+        title={`Current theme: ${theme}`}
+      >
+        <Brightness4Icon />
+      </span>
+
 
 
 
