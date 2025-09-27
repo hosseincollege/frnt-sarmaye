@@ -1,12 +1,18 @@
 @font-face {
   font-family: 'Vazirmatn';
   src: url('./fonts/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'Lobster';
-  src: url('./fonts/Lobster-Regular.ttf') format('truetype');
+  src: url('./fonts/Lobster-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
+
+
 
 
 

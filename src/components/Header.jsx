@@ -147,7 +147,7 @@ export default function Header() {
       <span
         style={{
           cursor: "pointer",
-          marginRight: "15px",
+          marginRight: "500px",
           display: "flex",
           alignItems: "center",
           color: getIconColor(),
