@@ -12,18 +12,27 @@
   font-style: normal;
 }
 
+/* تنظیمات اصلی RTL */
+* {
+  direction: rtl;
+  text-align: right;
+}
 
-
-
-
+html, body {
+  direction: rtl;
+  text-align: right;
+}
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 code {
@@ -52,9 +61,40 @@ code {
   --text-color: #ffffff;
 }
 
-/* رنگ پس‌زمینه و متن */
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
+/* RTL برای اینپوت‌ها و فرم‌ها */
+input, textarea, select {
+  direction: rtl;
+  text-align: right;
+}
+
+/* RTL برای کامپوننت‌های MUI */
+.MuiTextField-root {
+  direction: rtl;
+}
+
+.MuiInputBase-root {
+  direction: rtl;
+  text-align: right;
+}
+
+.MuiFormControl-root {
+  direction: rtl;
+}
+
+.MuiButton-root {
+  direction: rtl;
+}
+
+.MuiList-root {
+  direction: rtl;
+}
+
+.MuiMenuItem-root {
+  direction: rtl;
+  text-align: right;
+}
+
+.MuiTypography-root {
+  direction: rtl;
+  text-align: right;
 }
